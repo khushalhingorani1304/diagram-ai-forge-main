@@ -9,6 +9,7 @@ export type DiagramSession = {
   thumbnail?: string;
 };
 
+
 export type ChatSession = {
   id: string;
   title: string;
