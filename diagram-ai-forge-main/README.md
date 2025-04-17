@@ -6,7 +6,6 @@
 A next-gen web application that brings intelligent Piping & Instrumentation Diagram (P&ID) detection to life — powered by MCP servers, with a snappy UI built using Vite + React + TypeScript, and styled with Tailwind CSS + shadcn/ui.
 🌐 Live Project
 
-
 ## 🚀 Features
 
     🔍 AI-powered P&ID Diagram Analysis
