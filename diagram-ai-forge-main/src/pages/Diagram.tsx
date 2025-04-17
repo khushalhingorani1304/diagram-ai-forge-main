@@ -107,6 +107,67 @@ const Diagram = () => {
     setChatMessage("");
   };
 
+  type ComponentCountMap = Record<string, number>;
+  const getComponentUsageMap = (nodes: Node[]): ComponentCountMap => {
+    const map: ComponentCountMap = {};
+    for (const node of nodes) {
+      const componentName = node.data.component;
+      // Normalize case (optional)
+      const key = componentName?.toLowerCase() || node.data.label?.toLowerCase();
+      map[key] = (map[key] || 0) + 1;
+    }
+    return map;
+  };
+
+  function formatTechnicalText(input: string): string {
+    let html = input;
+  
+    // Escape HTML tags
+    html = html.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  
+    // Format code blocks (```language\ncode```)
+    html = html.replace(/```([a-z]*)\n([\s\S]*?)```/g, (_, lang, code) => {
+      return `<pre class="bg-gray-100 p-3 rounded text-sm overflow-x-auto mb-4"><code class="language-${lang}">${code.trim()}</code></pre>`;
+    });
+  
+    // Format inline code (`code`)
+    html = html.replace(/`([^`\n]+)`/g, (_, code) => {
+      return `<code class="bg-gray-100 text-purple-600 px-1 rounded">${code}</code>`;
+    });
+  
+    // Format bold (**text** or __text__)
+    html = html.replace(/(\*\*|__)(.*?)\1/g, (_, __, boldText) => {
+      return `<span class="font-bold">${boldText}</span>`;
+    });
+    html = html.replace(/(?<!\*)\*(?!\*)([^*\n]+)(?<!\*)\*(?!\*)/g, (_, italicText) => {
+      return `<span class="italic">${italicText}</span>`;
+    });
+    html = html.replace(/(?<!_)_(?!_)([^_\n]+)(?<!_)_(?!_)/g, (_, italicText) => {
+      return `<span class="italic">${italicText}</span>`;
+    });
+    // Numbered section headings (e.g., 1. Title)
+    html = html.replace(/^(\d+\.\s+)(.*)$/gm, (_, num, title) => {
+      return `<h2 class="text-xl font-bold mt-6 mb-2">${num}${title}</h2>`;
+    });
+  
+    // Format bullet points (* item)
+    html = html.replace(/^\* (.*)$/gm, (_, item) => {
+      return `<li class="ml-6 list-disc">${item}</li>`;
+    });
+  
+    // Wrap <li> in <ul>
+    html = html.replace(/(<li[\s\S]*?<\/li>)/g, '<ul class="mb-4">$1</ul>');
+  
+    // Convert double line breaks to paragraphs
+    html = html.replace(/\n{2,}/g, '</p><p>');
+    html = `<p>${html}</p>`; // Wrap everything in a paragraph
+  
+    // Remove <p> around <pre>, <ul>, <h2> etc.
+    html = html.replace(/<p>(\s*)(<(pre|ul|h2)[\s\S]*?<\/\3>)(\s*)<\/p>/g, '$2');
+  
+    return html;
+  }
+
   const onConnect = useCallback(
     (params) => {
       const newEdges = addEdge(params, edges);
