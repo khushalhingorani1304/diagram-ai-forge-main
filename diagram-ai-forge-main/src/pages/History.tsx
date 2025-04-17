@@ -61,20 +61,20 @@ const History = () => {
   const mockChatSessions = [
     {
       id: "chat-1",
-      title: "Valve Specifications Discussion",
-      createdAt: new Date(2023, 6, 16),
+      title: "What is P&ID",
+      createdAt: new Date(2025, 4, 16),
       messageCount: 12
     },
     {
       id: "chat-2",
       title: "Pressure Control Loop Questions",
-      createdAt: new Date(2023, 5, 22),
+      createdAt: new Date(2025, 4, 16),
       messageCount: 8
     },
     {
       id: "chat-3",
       title: "ISO Standards Clarification",
-      createdAt: new Date(2023, 4, 12),
+      createdAt: new Date(2025, 4, 17),
       messageCount: 15
     }
   ];

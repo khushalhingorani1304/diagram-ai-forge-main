@@ -30,6 +30,39 @@ Tech	Usage
 🧑‍💻 How to Run Locally
 
 
+# 💾 Backend
+
+    The backend powers the core logic of P&ID Diagram Detection with MCP Servers, handling image processing, AI detection, and server communication.
+
+## 🛠️ Tech Stack:
+
+    Node.js – Runtime environment
+
+    Express.js – Web framework
+
+    MongoDB – Database for storing diagrams and results
+
+    Multer – For handling image uploads
+
+    TensorFlow.js / Custom ML Model – For AI-based diagram detection
+
+    JWT & Cookies – For authentication (if used)
+
+    MCP Integration – For real-time communication with MCP servers
+
+ 
+## 🚀 How to Run Backend:
+
+# Navigate to backend folder
+cd backend
+
+# Install dependencies
+npm install
+
+# Start the server
+npm run dev
+
+Your app should now be running at http://localhost:3000
 
 # 🎨 Frontend
 

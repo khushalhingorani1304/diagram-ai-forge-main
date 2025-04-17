@@ -15,6 +15,8 @@ import {
   X
 } from "lucide-react";
 import { useAuth } from "@/providers/AuthProvider";
+import userImage from './logo1.png'; 
+
 
 interface SidebarProps {
   className?: string;
@@ -100,9 +102,9 @@ const Sidebar: FC<SidebarProps> = ({ className }) => {
           <div className="flex items-center gap-3 rounded-md px-3 py-2">
             <div className="grid h-9 w-9 place-items-center overflow-hidden rounded-full bg-slate-600">
               {user.image ? (
-                <img src={user.image} alt={user.name} className="h-full w-full object-cover" />
+                <img src={userImage} alt={"User"} className="h-full w-full object-cover" />
               ) : (
-                <span>{user.name.charAt(0).toUpperCase()}</span>
+              <span>{user.name.charAt(0).toUpperCase()}</span>
               )}
             </div>
             {sidebarOpen && (
@@ -112,12 +114,14 @@ const Sidebar: FC<SidebarProps> = ({ className }) => {
                 transition={{ delay: 0.1 }}
                 className="flex flex-col overflow-hidden text-sm"
               >
-                <span className="font-medium">{user.name}</span>
-                <span className="truncate text-xs opacity-70">{user.email}</span>
+                <span className="font-medium">{"Khushal"}</span>
+                <span className="truncate text-xs opacity-70">{"khushal3802.be22@chitkara.edu.in"}</span>
               </motion.div>
             )}
           </div>
         )}
+
+
         <button
           onClick={() => logout()}
           className="flex h-12 w-full items-center gap-3 rounded-md px-3 text-red-300 transition-colors hover:bg-red-500/20"
