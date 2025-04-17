@@ -52,6 +52,111 @@ const Upload = () => {
     
     setIsUploading(true);
     
+    const oldNodeEdges = `{
+      "nodes": [
+        {
+          "id": "1",
+          "type": "input",
+          "data": { "label": "Main Inlet Valve (V-100)" },
+          "position": { "x": 100, "y": 50 }
+        },
+        {
+          "id": "2",
+          "data": { "label": "Flow Sensor (F-101)" },
+          "position": { "x": 100, "y": 150 }
+        },
+        {
+          "id": "3",
+          "data": { "label": "Control Valve (V-102)" },
+          "position": { "x": 100, "y": 250 }
+        },
+        {
+          "id": "4",
+          "data": { "label": "Pump (P-103)" },
+          "position": { "x": 100, "y": 350 }
+        },
+        {
+          "id": "5",
+          "type": "output",
+          "data": { "label": "Outlet" },
+          "position": { "x": 100, "y": 450 }
+        }
+      ],
+      "edges": [
+        { "id": "e1-2", "source": "1", "target": "2", "animated": true },
+        { "id": "e2-3", "source": "2", "target": "3" },
+        { "id": "e3-4", "source": "3", "target": "4" },
+        { "id": "e4-5", "source": "4", "target": "5" }
+      ]
+    }`;
+        const NodeEdges = `{
+      "nodes": [
+        {
+          "id": "1",
+          "data": {
+            "label": "Pump-101",
+            "component": "pump"
+          },
+          "position": {
+            "x": 100,
+            "y": 100
+          }
+        },
+        {
+          "id": "2",
+          "data": {
+            "label": "Valve-101",
+            "component": "valve"
+          },
+          "position": {
+            "x": 300,
+            "y": 100
+          }
+        },
+        {
+          "id": "3",
+          "data": {
+            "label": "FT-101",
+            "component": "flow_transmitter"
+          },
+          "position": {
+            "x": 500,
+            "y": 100
+          }
+        },
+        {
+          "id": "4",
+          "data": {
+            "label": "PI-101",
+            "component": "pressure_indicator"
+          },
+          "position": {
+            "x": 700,
+            "y": 100
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1-2",
+          "source": "1",
+          "target": "2",
+          "animated": true
+        },
+        {
+          "id": "e2-3",
+          "source": "2",
+          "target": "3",
+        },
+        {
+          "id": "e3-4",
+          "source": "3",
+          "target": "4",
+        }
+      ]
+    }
+    `;
+
     try {
       // Simulate file processing delay
       await new Promise((resolve) => setTimeout(resolve, 1500));
